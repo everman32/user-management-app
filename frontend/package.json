@@ -1,7 +1,17 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
+  "name": "user-management-frontend",
+  "version": "1.0.0",
+  "description": "Frontend of the application that performs accounting and user management",
+  "main": "index.js",
+  "keywords": [
+    "user",
+    "management",
+    "frontend",
+    "nodejs",
+    "reactjs"
+  ],
+  "author": "Victor Borodyn",
+  "license": "MIT",
   "dependencies": {
     "@date-io/core": "^1.3.6",
     "@emotion/react": "^11.0.0-rc.0",

@@ -5,13 +5,13 @@ import Context from "../contexts/user-context";
 import { getAll } from "../http/user-api";
 
 const Management = observer(() => {
-  const { user } = useContext(Context);
+  const { userStore } = useContext(Context);
 
   useEffect(() => {
     getAll().then((data) => {
-      user.setUsers(data);
+      userStore.setUsers(data);
     });
-  }, [user]);
+  }, [userStore]);
   return <UserTable />;
 });
 

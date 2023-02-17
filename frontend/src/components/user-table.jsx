@@ -10,8 +10,8 @@ import { deleteById, getAll, blockById, activateById } from "../http/user-api";
 const UserTable = observer(() => {
   const defaultMaterialTheme = createTheme();
 
-  const { user } = useContext(Context);
-  const data = user.users;
+  const { userStore } = useContext(Context);
+  const data = userStore.getUsers();
 
   const columns = [
     {
@@ -66,12 +66,17 @@ const UserTable = observer(() => {
                 alert("Data synchronization...");
 
                 getAll().then((syncRows) => {
-                  user.setUsers(syncRows);
+                  userStore.setUsers(syncRows);
 
-                  if (!user.users.map((a) => a.id).includes(user.user.id)) {
+                  if (
+                    !userStore
+                      .getUsers()
+                      .map((a) => a.id)
+                      .includes(userStore.getCurrentUser().id)
+                  ) {
                     alert("Sing out...");
-                    user.setUser({});
-                    user.setIsAuth(false);
+                    userStore.setCurrentUser({});
+                    userStore.setIsAuth(false);
                     localStorage.removeItem("token");
                   }
                 });
@@ -87,18 +92,18 @@ const UserTable = observer(() => {
                 alert("Data synchronization...");
 
                 getAll().then((syncRows) => {
-                  user.setUsers(syncRows);
+                  userStore.setUsers(syncRows);
 
                   if (
-                    user.users.find(
+                    userStore.users.find(
                       (element) =>
-                        element.id === user.user.id &&
+                        element.id === userStore.getCurrentUser().id &&
                         element.status === "Blocked"
                     )
                   ) {
                     alert("Sing out...");
-                    user.setUser({});
-                    user.setIsAuth(false);
+                    userStore.setCurrentUser({});
+                    userStore.setIsAuth(false);
                     localStorage.removeItem("token");
                   }
                 });
@@ -114,7 +119,7 @@ const UserTable = observer(() => {
                 alert("Data synchronization...");
 
                 getAll().then((syncRows) => {
-                  user.setUsers(syncRows);
+                  userStore.setUsers(syncRows);
                 });
               },
             },

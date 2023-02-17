@@ -6,7 +6,7 @@ import UserStore from "./storage/user-storage";
 ReactDOM.render(
   <Context.Provider
     value={{
-      user: new UserStore(),
+      userStore: new UserStore(),
     }}
   >
     <App />

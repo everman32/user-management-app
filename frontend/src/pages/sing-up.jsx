@@ -10,7 +10,7 @@ import { singUp } from "../http/user-api";
 import Context from "../contexts/user-context";
 
 const singup = observer(() => {
-  const { user } = useContext(Context);
+  const { userStore } = useContext(Context);
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,8 +19,8 @@ const singup = observer(() => {
   const singUpButtonClick = async () => {
     try {
       const data = await singUp(name, email, password);
-      user.setUser(data);
-      user.setIsAuth(true);
+      userStore.setCurrentUser(data);
+      userStore.setIsAuth(true);
       history.push(MANAGEMENT_ROUTE);
     } catch (e) {
       alert(e.response.data.message);

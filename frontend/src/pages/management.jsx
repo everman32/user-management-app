@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import UserTable from "../components/user-table";
-import Context from "../index";
+import Context from "../contexts/user-context";
 import { getAll } from "../http/user-api";
 
 const Management = observer(() => {
@@ -11,7 +11,7 @@ const Management = observer(() => {
     getAll().then((data) => {
       user.setUsers(data);
     });
-  }, []);
+  }, [user]);
   return <UserTable />;
 });
 

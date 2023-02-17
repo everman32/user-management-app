@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { observer } from "mobx-react-lite";
 import MaterialTable from "material-table";
-import Context from "../index";
+import Context from "../contexts/user-context";
 
 import tableIcons from "./table-icons";
 import { deleteById, getAll, blockById, activateById } from "../http/user-api";

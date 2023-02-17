@@ -1,10 +1,7 @@
-import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import Context from "./contexts/user-context";
 import UserStore from "./storage/user-storage";
-
-const Context = createContext(null);
-export default Context;
 
 ReactDOM.render(
   <Context.Provider
@@ -14,5 +11,5 @@ ReactDOM.render(
   >
     <App />
   </Context.Provider>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );

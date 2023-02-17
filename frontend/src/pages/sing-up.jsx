@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -7,7 +7,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { MANAGEMENT_ROUTE, SINGIN_ROUTE } from "../utils/consts";
 import { singUp } from "../http/user-api";
-import Context from "../index";
+import Context from "../contexts/user-context";
 
 const singup = observer(() => {
   const { user } = useContext(Context);

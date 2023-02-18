@@ -27,7 +27,7 @@ class UserController {
       { status: "Blocked" },
       {
         where: { id },
-      },
+      }
     );
     if (!blockedCount) {
       return next(ApiError.badRequest("Failed to block user"));
@@ -41,7 +41,7 @@ class UserController {
       { status: "Active" },
       {
         where: { id },
-      },
+      }
     );
     if (!activatedCount) {
       return next(ApiError.badRequest("Failed to activate user"));

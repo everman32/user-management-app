@@ -68,7 +68,7 @@ class AuthController {
       {
         lastLoginedAt: moment().format("YYYY-MM-DD h:mm:ss"),
       },
-      { where: { email } },
+      { where: { email } }
     );
     if (!updatedLastLoginedTime) {
       return next(ApiError.internal("Failed to add last login date"));

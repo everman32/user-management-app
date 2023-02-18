@@ -18,7 +18,7 @@ const User = sequelize.define(
       allowNull: false,
       get() {
         return moment(this.getDataValue("lastLoginedAt")).format(
-          "YYYY-MM-DD h:mm:ss",
+          "YYYY-MM-DD h:mm:ss"
         );
       },
     },
@@ -26,14 +26,14 @@ const User = sequelize.define(
       type: DataTypes.DATE,
       get() {
         return moment(this.getDataValue("createdAt")).format(
-          "YYYY-MM-DD h:mm:ss",
+          "YYYY-MM-DD h:mm:ss"
         );
       },
     },
   },
   {
     updatedAt: false,
-  },
+  }
 );
 
 module.exports = User;

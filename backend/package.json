@@ -1,14 +1,20 @@
 {
-  "name": "server",
+  "name": "user-management-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend of the application that performs accounting and user management",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "user",
+    "management",
+    "backend",
+    "nodejs",
+    "express"
+  ],
+  "author": "Victor Borodyn",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",

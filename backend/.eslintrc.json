@@ -6,12 +6,13 @@
     },
     "extends": [
         "airbnb-base",
-        "prettier"
+        "plugin:sonarjs/recommended",
+        "plugin:unicorn/recommended",
+        "plugin:prettier/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
     "rules": {
-        "prettier/prettier": ["warn", { "endOfLine": "auto" }]
     }
 }

@@ -2,27 +2,27 @@ import ApiError from "../error/api-error.js";
 import User from "../entities/user.js";
 
 class UserController {
-  async getAll(req, res, next) {
+  async getAll(request, response, next) {
     const users = await User.findAll();
     if (!users) {
       return next(ApiError.internal("Failed to get user data"));
     }
-    return res.json(users);
+    return response.json(users);
   }
 
-  async deleteById(req, res, next) {
-    const { id } = req.body;
+  async deleteById(request, response, next) {
+    const { id } = request.body;
     const deletedCount = await User.destroy({
       where: { id },
     });
     if (!deletedCount) {
       return next(ApiError.badRequest("Failed to delete user"));
     }
-    return res.json(deletedCount);
+    return response.json(deletedCount);
   }
 
-  async blockById(req, res, next) {
-    const { id } = req.body;
+  async blockById(request, response, next) {
+    const { id } = request.body;
     const blockedCount = await User.update(
       { status: "Blocked" },
       {
@@ -32,11 +32,11 @@ class UserController {
     if (!blockedCount) {
       return next(ApiError.badRequest("Failed to block user"));
     }
-    return res.json(blockedCount);
+    return response.json(blockedCount);
   }
 
-  async activateById(req, res, next) {
-    const { id } = req.body;
+  async activateById(request, response, next) {
+    const { id } = request.body;
     const activatedCount = await User.update(
       { status: "Active" },
       {
@@ -46,7 +46,7 @@ class UserController {
     if (!activatedCount) {
       return next(ApiError.badRequest("Failed to activate user"));
     }
-    return res.json(activatedCount);
+    return response.json(activatedCount);
   }
 }
 

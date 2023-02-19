@@ -1,18 +1,18 @@
 import { verify } from "jsonwebtoken";
 
-export default function (req, res, next) {
-  if (req.method === "OPTIONS") {
+export default function (request, response, next) {
+  if (request.method === "OPTIONS") {
     next();
   }
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = request.headers.authorization.split(" ")[1];
     if (!token) {
-      return res.status(401).json({ message: "not authorized" });
+      return response.status(401).json({ message: "not authorized" });
     }
     const decoded = verify(token, process.env.SECRET_KEY);
-    req.user = decoded;
+    request.user = decoded;
     next();
-  } catch (e) {
-    res.status(401).json({ message: "not authorized" });
+  } catch {
+    response.status(401).json({ message: "not authorized" });
   }
 }

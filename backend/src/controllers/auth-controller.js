@@ -10,13 +10,13 @@ const generateJwt = (id, email) =>
   });
 
 class AuthController {
-  getToken(req, res) {
-    const token = generateJwt(req.user.id, req.user.email);
-    return res.json({ token });
+  getToken(request, response) {
+    const token = generateJwt(request.user.id, request.user.email);
+    return response.json({ token });
   }
 
-  async singUp(req, res, next) {
-    const { name, email, password } = req.body;
+  async singUp(request, response, next) {
+    const { name, email, password } = request.body;
 
     if (!name || !email || !password) {
       return next(ApiError.badRequest("Incorrect data"));
@@ -39,11 +39,11 @@ class AuthController {
     });
 
     const token = generateJwt(user.id, user.email);
-    return res.json({ token });
+    return response.json({ token });
   }
 
-  async singIn(req, res, next) {
-    const { email, password } = req.body;
+  async singIn(request, response, next) {
+    const { email, password } = request.body;
 
     const user = await User.findOne({
       where: { email },
@@ -74,7 +74,7 @@ class AuthController {
       return next(ApiError.internal("Failed to add last login date"));
     }
 
-    return res.json({ token });
+    return response.json({ token });
   }
 }
 

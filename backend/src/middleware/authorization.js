@@ -1,6 +1,6 @@
 import { verify } from "jsonwebtoken";
 
-export default function (request, response, next) {
+export default (request, response, next) => {
   if (request.method === "OPTIONS") {
     next();
   }
@@ -15,4 +15,5 @@ export default function (request, response, next) {
   } catch {
     response.status(401).json({ message: "not authorized" });
   }
-}
+  return 0;
+};

@@ -1,17 +1,21 @@
 {
     "env": {
-        "commonjs": true,
         "es2021": true,
         "node": true
     },
     "extends": [
         "airbnb-base",
-        "prettier"
+        "plugin:sonarjs/recommended",
+        "plugin:unicorn/recommended",
+        "plugin:prettier/recommended"
     ],
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "rules": {
-        "prettier/prettier": ["warn", { "endOfLine": "auto" }]
+        "no-console":"off",
+        "import/extensions": ["error", { "js": "ignorePackages" }],
+        "no-unused-vars":"off"
     }
 }

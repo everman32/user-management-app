@@ -1,20 +1,31 @@
 {
-  "name": "server",
+  "name": "user-management-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend of the application that performs accounting and user management",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "lint": "eslint src/**/* --ext .js",
+    "lint:fix": "npm run lint -- --fix",
+    "prit": "prettier --check src/**/*.js",
+    "prit:fix": "prettier --write src/**/*.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "user",
+    "management",
+    "backend",
+    "nodejs",
+    "express"
+  ],
+  "author": "Victor Borodyn",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.2",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
@@ -26,6 +37,8 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sonarjs": "^0.18.0",
+    "eslint-plugin-unicorn": "^45.0.2",
     "nodemon": "^2.0.7",
     "prettier": "^2.7.1"
   }

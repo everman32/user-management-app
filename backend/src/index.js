@@ -1,9 +1,9 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const sequelize = require("./config/database-connection");
-const router = require("./routers/main-router");
-const errorHandler = require("./middleware/error-handling");
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import router from "./routers/main-router.js";
+import sequelize from "./config/database-connection.js";
+import errorHandler from "./middleware/error-handling.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -19,9 +19,9 @@ const start = async () => {
     await sequelize.authenticate();
     await sequelize.sync();
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
   }
 };
 
-start();
+await start();

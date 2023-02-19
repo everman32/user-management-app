@@ -1,6 +1,6 @@
-const { DataTypes } = require("sequelize");
-const moment = require("moment");
-const sequelize = require("../config/database-connection");
+import { DataTypes } from "sequelize";
+import moment from "moment";
+import sequelize from "../config/database-connection.js";
 
 const User = sequelize.define(
   "users",
@@ -36,4 +36,4 @@ const User = sequelize.define(
   }
 );
 
-module.exports = User;
+export default User;

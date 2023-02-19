@@ -1,5 +1,5 @@
-const ApiError = require("../error/api-error");
-const User = require("../entities/user");
+import ApiError from "../error/api-error.js";
+import User from "../entities/user.js";
 
 class UserController {
   async getAll(req, res, next) {
@@ -50,4 +50,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+export default new UserController();

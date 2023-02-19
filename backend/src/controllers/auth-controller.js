@@ -1,8 +1,8 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const moment = require("moment");
-const User = require("../entities/user");
-const ApiError = require("../error/api-error");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import moment from "moment";
+import User from "../entities/user.js";
+import ApiError from "../error/api-error.js";
 
 const generateJwt = (id, email) =>
   jwt.sign({ id, email }, process.env.SECRET_KEY, {
@@ -78,4 +78,4 @@ class AuthController {
   }
 }
 
-module.exports = new AuthController();
+export default new AuthController();

@@ -1,6 +1,5 @@
 {
     "env": {
-        "commonjs": true,
         "es2021": true,
         "node": true
     },
@@ -11,8 +10,11 @@
         "plugin:prettier/recommended"
     ],
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "rules": {
+        "no-console":"off",
+        "import/extensions": ["error", { "js": "ignorePackages" }],
     }
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -7,10 +7,10 @@ import { NavLink, useHistory } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { MANAGEMENT_ROUTE, SINGUP_ROUTE } from "../utils/consts";
 import { singIn } from "../http/user-api";
-import Context from "../index";
+import Context from "../contexts/user-context";
 
 const singin = observer(() => {
-  const { user } = useContext(Context);
+  const { userStore } = useContext(Context);
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,8 +18,8 @@ const singin = observer(() => {
   const singInButtonClick = async () => {
     try {
       const data = await singIn(email, password);
-      user.setUser(data);
-      user.setIsAuth(true);
+      userStore.setCurrentUser(data);
+      userStore.setIsAuth(true);
       history.push(MANAGEMENT_ROUTE);
     } catch (e) {
       alert(e.response.data.message);

@@ -1,9 +1,9 @@
-const Router = require("express");
+import Router from "express";
+import userController from "../controllers/user-controller.js";
+import authController from "../controllers/auth-controller.js";
+import authMiddleware from "../middleware/authorization.js";
 
 const router = new Router();
-const userController = require("../controllers/user-controller");
-const authController = require("../controllers/auth-controller");
-const authMiddleware = require("../middleware/authorization");
 
 router.post("/singUp", authController.singUp);
 router.post("/singIn", authController.singIn);
@@ -13,4 +13,4 @@ router.post("/delete", userController.deleteById);
 router.post("/block", userController.blockById);
 router.post("/activate", userController.activateById);
 
-module.exports = router;
+export default router;

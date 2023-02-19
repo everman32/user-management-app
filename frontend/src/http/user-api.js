@@ -1,4 +1,4 @@
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 import { $authHost, $host } from "./index";
 
 export const singUp = async (name, email, password) => {
@@ -8,19 +8,19 @@ export const singUp = async (name, email, password) => {
     password,
   });
   localStorage.setItem("token", data.token);
-  return jwt_decode(data.token);
+  return jwtDecode(data.token);
 };
 
 export const singIn = async (email, password) => {
   const { data } = await $host.post("api/user/singIn", { email, password });
   localStorage.setItem("token", data.token);
-  return jwt_decode(data.token);
+  return jwtDecode(data.token);
 };
 
 export const getToken = async () => {
   const { data } = await $authHost.get("api/user/auth");
   localStorage.setItem("token", data.token);
-  return jwt_decode(data.token);
+  return jwtDecode(data.token);
 };
 
 export const getAll = async () => {

@@ -1,6 +1,6 @@
 import { verify } from "jsonwebtoken";
 
-export default (request, response, next) => {
+const authMiddleware = (request, response, next) => {
   if (request.method === "OPTIONS") {
     next();
   }
@@ -17,3 +17,5 @@ export default (request, response, next) => {
   }
   return 0;
 };
+
+export default authMiddleware;

@@ -16,6 +16,6 @@
     "rules": {
         "no-console":"off",
         "import/extensions": ["error", { "js": "ignorePackages" }],
-        "no-unused-vars":"off"
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
 }

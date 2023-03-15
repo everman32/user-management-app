@@ -30,6 +30,7 @@
     "moment": "^2.29.2",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "pino": "^8.11.0",
     "sequelize": "^6.4.0"
   },
   "devDependencies": {

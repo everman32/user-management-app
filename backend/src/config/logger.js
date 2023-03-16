@@ -1,13 +1,11 @@
 import pino, { stdTimeFunctions } from "pino";
 import path from "node:path";
-import fs from "node:fs";
+import logDirectory from "./log-directory.js";
 
-const logDirectory = path.join(
-  process.cwd(),
-  process.env.PINO_LOG_DIRECTORY || "logs"
+const logFile = path.join(
+  logDirectory,
+  process.env.PINO_LOG_FILE || "server.log"
 );
-fs.mkdirSync(logDirectory, { recursive: true });
-const logFile = path.join(logDirectory, process.env.PINO_LOG_FILE || "app.log");
 
 const logger = pino({
   level: process.env.PINO_LOG_LEVEL || "info",

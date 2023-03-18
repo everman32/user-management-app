@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import router from "./routers/main-router.js";
+import router from "./router/main-router.js";
 import sequelize from "./config/database-connection.js";
 import logger from "./config/logger.js";
 import accessLogger from "./middleware/access-logger.js";

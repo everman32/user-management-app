@@ -1,5 +1,5 @@
 import ApiError from "../error/api-error.js";
-import User from "../entities/user.js";
+import User from "../domain/user.js";
 
 class UserController {
   async getAll(request, response, next) {

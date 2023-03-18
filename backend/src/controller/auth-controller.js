@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import moment from "moment";
-import User from "../entities/user.js";
+import User from "../domain/user.js";
 import ApiError from "../error/api-error.js";
 
 const generateJwt = (id, email) =>

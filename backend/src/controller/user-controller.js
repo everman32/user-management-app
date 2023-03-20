@@ -1,52 +1,40 @@
 import ApiError from "../error/api-error.js";
-import User from "../domain/user.js";
+import userService from "../service/user-service.js";
 
 class UserController {
-  async getAll(request, response, next) {
-    const users = await User.findAll();
+  async getAllUsers(req, res, next) {
+    const users = await userService.getAllUsers();
     if (!users) {
       return next(ApiError.internal("Failed to get user data"));
     }
-    return response.json(users);
+    return res.json(users);
   }
 
-  async deleteById(request, response, next) {
-    const { id } = request.body;
-    const deletedCount = await User.destroy({
-      where: { id },
-    });
+  async deleteUser(req, res, next) {
+    const { id } = req.body;
+    const deletedCount = await userService.deleteUserById(id);
     if (!deletedCount) {
       return next(ApiError.badRequest("Failed to delete user"));
     }
-    return response.json(deletedCount);
+    return res.json(deletedCount);
   }
 
-  async blockById(request, response, next) {
-    const { id } = request.body;
-    const blockedCount = await User.update(
-      { status: "Blocked" },
-      {
-        where: { id },
-      }
-    );
+  async blockUser(req, res, next) {
+    const { id } = req.body;
+    const blockedCount = await userService.blockUserById(id);
     if (!blockedCount) {
       return next(ApiError.badRequest("Failed to block user"));
     }
-    return response.json(blockedCount);
+    return res.json(blockedCount);
   }
 
-  async activateById(request, response, next) {
-    const { id } = request.body;
-    const activatedCount = await User.update(
-      { status: "Active" },
-      {
-        where: { id },
-      }
-    );
+  async activateUser(req, res, next) {
+    const { id } = req.body;
+    const activatedCount = userService.activateUserById(id);
     if (!activatedCount) {
       return next(ApiError.badRequest("Failed to activate user"));
     }
-    return response.json(activatedCount);
+    return res.json(activatedCount);
   }
 }
 

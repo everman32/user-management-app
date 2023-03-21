@@ -1,6 +1,6 @@
 import ApiError from "../error/api-error.js";
 
-const errorMiddleware = (err, _req, res, _next) => {
+const errorHandler = (err, _req, res, _next) => {
   try {
     if (err instanceof ApiError) {
       return res.status(err.status).json({ message: err.message });
@@ -11,4 +11,4 @@ const errorMiddleware = (err, _req, res, _next) => {
   }
 };
 
-export default errorMiddleware;
+export default errorHandler;

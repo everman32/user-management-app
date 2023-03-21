@@ -5,7 +5,7 @@ import router from "./router/main-router.js";
 import sequelize from "./config/database-connection.js";
 import logger from "./config/logger.js";
 import accessLogger from "./middleware/access-logger.js";
-import errorMiddleware from "./middleware/error-middleware.js";
+import errorMiddleware from "./middleware/error-handler.js";
 
 const PORT = process.env.PORT || 5000;
 

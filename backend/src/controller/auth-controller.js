@@ -2,11 +2,11 @@ import ApiError from "../error/api-error.js";
 import authService from "../service/auth-service.js";
 import userService from "../service/user-service.js";
 
-class AuthController {
+const AuthController = {
   getToken(req, res) {
     const token = authService.generateJwt(req.user.id, req.user.email);
     return res.json({ token });
-  }
+  },
 
   async singIn(req, res, next) {
     const { email, password } = req.body;
@@ -38,7 +38,7 @@ class AuthController {
     }
 
     return res.json({ token });
-  }
+  },
 
   async singUp(req, res, next) {
     const { name, email, password } = req.body;
@@ -58,7 +58,7 @@ class AuthController {
 
     const token = authService.generateJwt(user.id, user.email);
     return res.json({ token });
-  }
-}
+  },
+};
 
-export default new AuthController();
+export default AuthController;

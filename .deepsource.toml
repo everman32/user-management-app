@@ -5,3 +5,5 @@ name = "javascript"
 
   [analyzers.meta]
   plugins = ["react"]
+  environment = ["nodejs"]
+  skip_doc_coverage = ["class-expression", "method-definition"]

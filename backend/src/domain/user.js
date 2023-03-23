@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
-import moment from "moment";
 import sequelize from "../config/database-connection.js";
+import dateService from "../service/date-service.js";
 
 const User = sequelize.define(
   "users",
@@ -17,17 +17,13 @@ const User = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
       get() {
-        return moment(this.getDataValue("lastLoginedAt")).format(
-          "YYYY-MM-DD h:mm:ss"
-        );
+        return dateService.getFormatedDate(this.getDataValue("lastLoginedAt"));
       },
     },
     createdAt: {
       type: DataTypes.DATE,
       get() {
-        return moment(this.getDataValue("createdAt")).format(
-          "YYYY-MM-DD h:mm:ss"
-        );
+        return dateService.getFormatedDate(this.getDataValue("createdAt"));
       },
     },
   },

@@ -1,5 +1,5 @@
-import moment from "moment";
 import User from "../domain/user.js";
+import dateService from "./date-service.js";
 
 const UserService = {
   async createUser(name, email, hashPassword) {
@@ -7,7 +7,7 @@ const UserService = {
       name,
       email,
       password: hashPassword,
-      lastLoginedAt: moment().format("YYYY-MM-DD h:mm:ss"),
+      lastLoginedAt: dateService.getCurrentDate(),
     });
   },
 
@@ -52,7 +52,7 @@ const UserService = {
   async updateUserLastLoginedTimeByEmail(email) {
     return User.update(
       {
-        lastLoginedAt: moment().format("YYYY-MM-DD h:mm:ss"),
+        lastLoginedAt: dateService.getCurrentDate(),
       },
       { where: { email } }
     );

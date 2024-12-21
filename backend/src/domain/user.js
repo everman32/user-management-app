@@ -17,13 +17,17 @@ const User = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
       get() {
-        return dateService.getFormatedDate(this.getDataValue("lastLoginedAt"));
+        const lastLoginedAt = this.getDataValue("lastLoginedAt");
+        return lastLoginedAt
+          ? dateService.getFormatedDate(lastLoginedAt)
+          : undefined;
       },
     },
     createdAt: {
       type: DataTypes.DATE,
       get() {
-        return dateService.getFormatedDate(this.getDataValue("createdAt"));
+        const createdAt = this.getDataValue("createdAt");
+        return createdAt ? dateService.getFormatedDate(createdAt) : undefined;
       },
     },
   },

@@ -1,4 +1,4 @@
-import { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const authMiddleware = (request, response, next) => {
   if (request.method === "OPTIONS") {
@@ -9,7 +9,7 @@ const authMiddleware = (request, response, next) => {
     if (!token) {
       return response.status(401).json({ message: "not authorized" });
     }
-    const decoded = verify(token, process.env.SECRET_KEY);
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
     request.user = decoded;
     next();
   } catch {

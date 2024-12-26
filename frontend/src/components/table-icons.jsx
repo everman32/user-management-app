@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -18,33 +18,64 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-/* eslint-disable react/jsx-props-no-spreading */
 const tableIcons = {
-  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-  Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-  Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-  DetailPanel: forwardRef((props, ref) => (
-    <ChevronRight {...props} ref={ref} />
-  )),
-  Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-  Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-  FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-  LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-  NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-  PreviousPage: forwardRef((props, ref) => (
-    <ChevronLeft {...props} ref={ref} />
-  )),
-  ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-  SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-  ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-  ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-  BlockIcon: forwardRef((props, ref) => <BlockIcon {...props} ref={ref} />),
-  CheckCircleIcon: forwardRef((props, ref) => (
-    <CheckCircleIcon {...props} ref={ref} />
-  )),
+  Add: forwardRef(function AddComponent(props, ref) {
+    return <AddBox {...props} ref={ref} />;
+  }),
+  Check: forwardRef(function CheckComponent(props, ref) {
+    return <Check {...props} ref={ref} />;
+  }),
+  Clear: forwardRef(function ClearComponent(props, ref) {
+    return <Clear {...props} ref={ref} />;
+  }),
+  Delete: forwardRef(function DeleteComponent(props, ref) {
+    return <DeleteOutline {...props} ref={ref} />;
+  }),
+  DetailPanel: forwardRef(function DetailPanelComponent(props, ref) {
+    return <ChevronRight {...props} ref={ref} />;
+  }),
+  Edit: forwardRef(function EditComponent(props, ref) {
+    return <Edit {...props} ref={ref} />;
+  }),
+  Export: forwardRef(function ExportComponent(props, ref) {
+    return <SaveAlt {...props} ref={ref} />;
+  }),
+  Filter: forwardRef(function FilterComponent(props, ref) {
+    return <FilterList {...props} ref={ref} />;
+  }),
+  FirstPage: forwardRef(function FirstPageComponent(props, ref) {
+    return <FirstPage {...props} ref={ref} />;
+  }),
+  LastPage: forwardRef(function LastPageComponent(props, ref) {
+    return <LastPage {...props} ref={ref} />;
+  }),
+  NextPage: forwardRef(function NextPageComponent(props, ref) {
+    return <ChevronRight {...props} ref={ref} />;
+  }),
+  PreviousPage: forwardRef(function PreviousPageComponent(props, ref) {
+    return <ChevronLeft {...props} ref={ref} />;
+  }),
+  ResetSearch: forwardRef(function ResetSearchComponent(props, ref) {
+    return <Clear {...props} ref={ref} />;
+  }),
+  Search: forwardRef(function SearchComponent(props, ref) {
+    return <Search {...props} ref={ref} />;
+  }),
+  SortArrow: forwardRef(function SortArrowComponent(props, ref) {
+    return <ArrowDownward {...props} ref={ref} />;
+  }),
+  ThirdStateCheck: forwardRef(function ThirdStateCheckComponent(props, ref) {
+    return <Remove {...props} ref={ref} />;
+  }),
+  ViewColumn: forwardRef(function ViewColumnComponent(props, ref) {
+    return <ViewColumn {...props} ref={ref} />;
+  }),
+  BlockIcon: forwardRef(function BlockIconComponent(props, ref) {
+    return <BlockIcon {...props} ref={ref} />;
+  }),
+  CheckCircleIcon: forwardRef(function CheckCircleIconComponent(props, ref) {
+    return <CheckCircleIcon {...props} ref={ref} />;
+  }),
 };
 
 export default tableIcons;

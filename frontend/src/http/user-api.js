@@ -1,4 +1,4 @@
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { $authHost, $host } from "./index";
 
 export const singUp = async (name, email, password) => {

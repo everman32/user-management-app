@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import UserTable from "../components/user-table";
+import UserTable from "../components/table/user-table";
 import Context from "../contexts/user-context";
 import { getAll } from "../http/user-api";
 

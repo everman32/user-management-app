@@ -1,7 +1,15 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
 import PropTypes from "prop-types";
-import Context from "../contexts/user-context";
+import Context from "../../contexts/user-context";
+import { stableSort, getComparator } from "./sort";
+import { headCells } from "./head-cells";
+import {
+  deleteById,
+  getAll,
+  blockById,
+  activateById,
+} from "../../http/user-api";
 
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -22,14 +30,11 @@ import Tooltip from "@mui/material/Tooltip";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
-
-import { deleteById, getAll, blockById, activateById } from "../http/user-api";
 
 const UserTable = observer(() => {
   const { userStore } = useContext(Context);
@@ -103,77 +108,6 @@ const UserTable = observer(() => {
       ),
     [rows, order, orderBy, page, rowsPerPage]
   );
-
-  function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-
-  function getComparator(order, orderBy) {
-    return order === "desc"
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy);
-  }
-
-  // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-  // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-  // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-  // with exampleArray.slice().sort(exampleComparator)
-  function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) {
-        return order;
-      }
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-  }
-
-  const headCells = [
-    {
-      id: "id",
-      numeric: true,
-      disablePadding: false,
-      label: "ID",
-    },
-    {
-      id: "name",
-      numeric: false,
-      disablePadding: true,
-      label: "Name",
-    },
-    {
-      id: "email",
-      numeric: false,
-      disablePadding: true,
-      label: "Email",
-    },
-    {
-      id: "status",
-      numeric: false,
-      disablePadding: true,
-      label: "Status",
-    },
-    {
-      id: "lastLoginedAt",
-      numeric: false,
-      disablePadding: true,
-      label: "Last logined at",
-    },
-    {
-      id: "createdAt",
-      numeric: false,
-      disablePadding: true,
-      label: "Created at",
-    },
-  ];
 
   function EnhancedTableHead(props) {
     const {

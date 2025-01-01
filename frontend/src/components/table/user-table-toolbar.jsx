@@ -15,7 +15,6 @@ import {
 const UserTableToolbar = ({ numSelected, selected, userStore }) => {
   const handleDelete = async () => {
     await deleteById(selected);
-    alert("Data synchronization...");
 
     const syncRows = await getAll();
     userStore.setUsers(syncRows);
@@ -32,8 +31,6 @@ const UserTableToolbar = ({ numSelected, selected, userStore }) => {
 
   const handleBlock = async () => {
     await blockById(selected);
-    alert("Data synchronization...");
-
     const syncRows = await getAll();
     userStore.setUsers(syncRows);
 
@@ -51,8 +48,6 @@ const UserTableToolbar = ({ numSelected, selected, userStore }) => {
 
   const handleActivate = async () => {
     await activateById(selected);
-    alert("Data synchronization...");
-
     const syncRows = await getAll();
     userStore.setUsers(syncRows);
   };

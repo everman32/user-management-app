@@ -1,32 +1,16 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
-import PropTypes from "prop-types";
 import Context from "../../contexts/user-context";
 import { stableSort, getComparator } from "./sort";
-import {
-  deleteById,
-  getAll,
-  blockById,
-  activateById,
-} from "../../http/user-api";
-
-import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import Stack from "@mui/material/Stack";
-import DeleteIcon from "@mui/icons-material/Delete";
-import BlockIcon from "@mui/icons-material/Block";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import UserTableRow from "./user-table-row";
 import UserTableHead from "./user-table-head";
+import UserTableToolbar from "./user-table-toolbar";
 
 const UserTable = observer(() => {
   const { userStore } = useContext(Context);
@@ -96,124 +80,14 @@ const UserTable = observer(() => {
     [rows, order, orderBy, page, rowsPerPage]
   );
 
-  function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
-
-    return (
-      <Toolbar
-        sx={{
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
-          ...(numSelected > 0 && {
-            bgcolor: (theme) =>
-              alpha(
-                theme.palette.primary.main,
-                theme.palette.action.activatedOpacity
-              ),
-          }),
-        }}
-      >
-        {numSelected > 0 ? (
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            color="inherit"
-            variant="subtitle1"
-            component="div"
-          >
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          />
-        )}
-
-        {numSelected > 0 && (
-          <Stack direction="row">
-            <Tooltip title="Remove selected users">
-              <IconButton
-                onClick={() => {
-                  deleteById(selected);
-                  alert("Data synchronization...");
-
-                  getAll().then((syncRows) => {
-                    userStore.setUsers(syncRows);
-
-                    if (
-                      !userStore
-                        .getUsers()
-                        .map((a) => a.id)
-                        .includes(userStore.getCurrentUser().id)
-                    ) {
-                      alert("Sing out...");
-                      userStore.setCurrentUser({});
-                      userStore.setIsAuth(false);
-                      localStorage.removeItem("token");
-                    }
-                  });
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Block selected users">
-              <IconButton
-                onClick={() => {
-                  blockById(selected);
-                  alert("Data synchronization...");
-
-                  getAll().then((syncRows) => {
-                    userStore.setUsers(syncRows);
-
-                    if (
-                      userStore.users.find(
-                        (element) =>
-                          element.id === userStore.getCurrentUser().id &&
-                          element.status === "Blocked"
-                      )
-                    ) {
-                      alert("Sing out...");
-                      userStore.setCurrentUser({});
-                      userStore.setIsAuth(false);
-                      localStorage.removeItem("token");
-                    }
-                  });
-                }}
-              >
-                <BlockIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Activate selected users">
-              <IconButton
-                onClick={() => {
-                  activateById(selected);
-                  alert("Data synchronization...");
-
-                  getAll().then((syncRows) => {
-                    userStore.setUsers(syncRows);
-                  });
-                }}
-              >
-                <CheckCircleIcon />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-        )}
-      </Toolbar>
-    );
-  }
-
-  EnhancedTableToolbar.propTypes = {
-    numSelected: PropTypes.number.isRequired,
-  };
-
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <UserTableToolbar
+          numSelected={selected.length}
+          selected={selected}
+          userStore={userStore}
+        />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}

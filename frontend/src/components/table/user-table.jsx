@@ -205,9 +205,7 @@ const UserTable = observer(() => {
             variant="h6"
             id="tableTitle"
             component="div"
-          >
-            Users
-          </Typography>
+          />
         )}
 
         {numSelected > 0 ? (

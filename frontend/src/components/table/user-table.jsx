@@ -31,7 +31,6 @@ import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
 const UserTable = observer(() => {
@@ -201,7 +200,7 @@ const UserTable = observer(() => {
           />
         )}
 
-        {numSelected > 0 ? (
+        {numSelected > 0 && (
           <Stack direction="row">
             <Tooltip title="Remove selected users">
               <IconButton
@@ -271,12 +270,6 @@ const UserTable = observer(() => {
               </IconButton>
             </Tooltip>
           </Stack>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
         )}
       </Toolbar>
     );
